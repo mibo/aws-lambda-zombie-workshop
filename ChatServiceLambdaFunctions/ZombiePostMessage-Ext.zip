@@ -3,8 +3,6 @@ var aws = require('aws-sdk');
 var ddb;
 var querystring = require('querystring');
 
-var http = require('request');
-
 var theContext;
 var message;
 var from;
@@ -47,15 +45,6 @@ exports.handler = function(event, context) {
     };
 
     dynamoPut(DDBparams);
-    http.post(
-        'https://hooks.slack.com/services/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',
-        { json: { text: message } },
-        function (error, response, body) {
-            if (!error && response.statusCode == 200) {
-                console.log(body)
-            }
-        }
-    );
 };
 
 function init(context) {
